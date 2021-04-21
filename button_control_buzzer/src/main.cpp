@@ -1,8 +1,11 @@
 #include <Arduino.h>
 #include <ArduinoSTL.h>
+#define PIN12 12
+#define PIN9 9
+#define PIN4 4
 using namespace std;
 
-int buzzer = 12, on_button = 9, off_button = 4;
+int buzzer = PIN12, on_button = PIN9, off_button = PIN4;
 bool is_active = false;
 
 
@@ -13,6 +16,7 @@ void setup()
     pinMode(on_button, INPUT_PULLUP);
     pinMode(off_button, INPUT_PULLUP);
 }
+
 void active_buzzer(){
     digitalWrite(buzzer, HIGH);
     delay(100);
