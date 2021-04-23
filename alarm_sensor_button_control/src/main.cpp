@@ -10,7 +10,7 @@
 #define SYSTEM_ON "System status: ON"
 #define SYSTEM_OFF "System status: OFF"
 #define ALERT_MESSAGE "Alert: DANGER"
-
+#define SERIAL_DELAY 100
 
 long dist;
 SR04 sensor = SR04(ECHO_PIN, TRIG_PIN);
@@ -24,7 +24,7 @@ void setup() {
   pinMode(button_on, INPUT_PULLUP);
   pinMode(button_off, INPUT_PULLUP);
   Serial.begin(9600);
-  delay(100);
+  delay(SERIAL_DELAY);
 }
 
 void active_alarm(int distance)
