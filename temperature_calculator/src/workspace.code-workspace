@@ -1,0 +1,40 @@
+{
+    "folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"name": "rgb_led",
+			"path": "../../resources/rgb_led"
+		},
+		{
+			"name": "led_button_control",
+			"path": "../../resources/led_button_control"
+		},
+		{
+			"name": "led_button_control",
+			"path": "../../led_button_control"
+		},
+		{
+			"name": "button_control_buzzer",
+			"path": "../../button_control_buzzer"
+		},
+		{
+			"name": "alarm_sensor_button_control",
+			"path": "../../alarm_sensor_button_control"
+		},
+		{
+			"name": "servo_motor_control",
+			"path": "../../servo_motor_control"
+		},
+		{
+			"name": "keypad_control",
+			"path": "../../keypad_control"
+		},
+		{
+			"name": "lcd_control",
+			"path": ".."
+		}
+	],
+    "settings": {}
+}
