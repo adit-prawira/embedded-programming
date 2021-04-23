@@ -1,19 +1,22 @@
 #include <Arduino.h>
 #include <SR04.h>
 
+
 #define TRIG_PIN 4 
 #define ECHO_PIN 5
 #define ON_BUTTON_PIN 6
 #define OFF_BUTTON_PIN 7
 #define ALARM_PIN 8
-#define ALARM_LED 9
 #define SYSTEM_ON "System status: ON"
 #define SYSTEM_OFF "System status: OFF"
 #define ALERT_MESSAGE "Alert: DANGER"
+
+
 long dist;
 SR04 sensor = SR04(ECHO_PIN, TRIG_PIN);
-int alarm = ALARM_PIN, button_on = ON_BUTTON_PIN, button_off = OFF_BUTTON_PIN, led = ALARM_LED;
+int alarm = ALARM_PIN, button_on = ON_BUTTON_PIN, button_off = OFF_BUTTON_PIN;
 bool alert = false, is_active = false;
+String dist_str;
 
 // put your setup code here, to run once:
 void setup() {
@@ -24,14 +27,13 @@ void setup() {
   delay(100);
 }
 
-void active_alarm()
+void active_alarm(int distance)
 {
+  int time_d = (2 * distance >= 30) ? (2 * distance) : 30;
   digitalWrite(alarm, HIGH);
-  digitalWrite(led, HIGH);
-  delay(100);
+  delay(time_d);
   digitalWrite(alarm, LOW);
-  digitalWrite(led, LOW);
-  delay(100);
+  delay(time_d);
 }
 
 // put your main code here, to run repeatedly:
@@ -48,16 +50,20 @@ void loop() {
   
   if(is_active){
     dist = sensor.Distance();
+    
     // active alarm when ultrasonic sensor detect object in 50 cm range
     // alarm will be turned off otherwise
-    if(dist < 50 && is_active){
+    if(dist <= 50 && is_active){
       alert = true;
     }else{
       alert = false;
     }
+
     if (alert){
+      dist_str = "Distance: " + String(dist) + " cm";
       Serial.println(ALERT_MESSAGE);
-      active_alarm();
+      Serial.println(dist_str);
+      active_alarm((int)dist);
     }
   }
 }
