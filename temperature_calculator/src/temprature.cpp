@@ -16,7 +16,7 @@ long Temperature::KelvinToFahrenheit(){
 }
 
 long Temperature::FahrenheitToCelcius(){
-    return (_value - 32) * (5 / 9);
+    return (5*(_value - 32))/9;
 }
 
 long Temperature::FahrenheitToKelvin(){
