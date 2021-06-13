@@ -2,8 +2,7 @@
 #include <LiquidCrystal.h>
 #include <temperature.h>
 #include <IRremote.h>
-#include <ArduinoSTL.h>
-#include <string>
+
 // NOTE: the LCD used for this program is LCD1602 module
 // Hence, it has 16 columns and 2 rows.
 #define LCD_COLS = 16
@@ -46,7 +45,7 @@ void decideLcd(){
       Temperature t(input_num.toInt(), String(message[0]));
       lcd.setCursor(0, 1);
       lcd.print(String(t.FahrenheitToCelcius())+"C, "+ String(t.FahrenheitToKelvin())+"K");
-      Serial.println("Fahrenheit conversion: " + String(t.FahrenheitToCelcius())+"C, "+ String(t.FahrenheitToKelvin())+"K");
+      //Serial.println("Fahrenheit conversion: " + String(t.FahrenheitToCelcius())+"C, "+ String(t.FahrenheitToKelvin())+"K");
     }
     else if (message[0] == 'C')
     {
@@ -150,7 +149,7 @@ void setup()
 {
   String num = "30";
   lcd.begin(16, 2);
-  lcd.print("TempCalc" + String(Temperature(num.toDouble(), "C").CelciusToFahrenheit()));
+  lcd.print("TempCalc");
   Serial.begin(9600);
   irrecv.enableIRIn();
 }
